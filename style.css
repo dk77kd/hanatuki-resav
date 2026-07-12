@@ -1,0 +1,917 @@
+/* ─── Reset ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white:    #FFFFFF;
+  --bg:       #FAF8F5;
+  --ink:      #2C2420;
+  --mid:      #8C8078;
+  --light:    #E5DBD5;
+  --lighter:  #F2EDE8;
+  --rose:     #BF8090;
+  --rose-dk:  #A06878;
+  --rose-lt:  #F5E8EC;
+  --err:      #B85C5C;
+  --radius:   2px;
+}
+
+body {
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "游明朝", Georgia, serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Header ─── */
+header {
+  background: var(--white);
+  text-align: center;
+  padding: 48px 16px 40px;
+  border-bottom: 1px solid var(--light);
+}
+.header-eyebrow {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 5px;
+  color: var(--rose);
+  margin-bottom: 10px;
+}
+header h1 {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 400;
+  letter-spacing: 10px;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.header-sub {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: var(--mid);
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+/* ─── Main wrapper ─── */
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 52px 24px 80px;
+}
+
+/* ─── Back to top link ─── */
+.back-to-top {
+  display: inline-block;
+  font-family: "Jost", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--mid);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color .2s;
+}
+.back-to-top:hover { color: var(--rose); }
+
+/* ─── Category grid (top page) ─── */
+.category-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.category-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid var(--light);
+  padding: 28px 32px;
+  text-decoration: none;
+  transition: border-color .2s, background .2s;
+}
+.category-card:hover { border-color: var(--rose); background: var(--rose-lt); }
+.category-card-en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--rose);
+  display: block;
+  margin-bottom: 6px;
+}
+.category-card-title {
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.category-card-desc {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 12px;
+  color: var(--mid);
+  letter-spacing: 1px;
+  line-height: 1.7;
+}
+.category-card-arrow {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--rose);
+  flex-shrink: 0;
+}
+
+/* ─── Step indicator ─── */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 52px;
+  gap: 0;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.step-line {
+  width: 24px;
+  height: 1px;
+  background: var(--light);
+  transition: background .4s;
+}
+.step-line.done { background: var(--rose); }
+.step-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--light);
+  background: var(--white);
+  transition: all .3s;
+}
+.step.active .step-dot {
+  background: var(--ink);
+  border-color: var(--ink);
+  width: 10px; height: 10px;
+}
+.step.done .step-dot {
+  background: var(--rose);
+  border-color: var(--rose);
+}
+.step-label {
+  font-family: "Jost", sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--light);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.step.active .step-label { color: var(--ink); }
+.step.done  .step-label  { color: var(--rose); }
+
+/* ─── Section heading ─── */
+.section-heading { margin-bottom: 36px; }
+.section-heading .en {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--rose);
+  display: block;
+  margin-bottom: 6px;
+}
+.section-heading h2 {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: var(--ink);
+}
+.section-heading p {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 12px;
+  color: var(--mid);
+  margin-top: 8px;
+  letter-spacing: 1px;
+  line-height: 1.9;
+}
+
+/* ─── Card ─── */
+.card {
+  background: var(--white);
+  padding: 48px 44px;
+  display: none;
+}
+.card.active { display: block; animation: fadeUp .4s ease; }
+@media (max-width: 540px) { .card { padding: 32px 20px; } }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Plan grid ─── */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+@media (max-width: 560px) {
+  .plan-grid { grid-template-columns: 1fr; }
+}
+
+.plan-card {
+  border: 1px solid var(--light);
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  position: relative;
+  display: block;
+}
+.plan-card:hover { border-color: var(--rose); background: var(--rose-lt); }
+.plan-card.selected {
+  border-color: var(--rose);
+  background: var(--rose-lt);
+  box-shadow: inset 0 0 0 1px var(--rose);
+}
+.plan-card input[type="radio"] { display: none; }
+
+.plan-badge {
+  font-family: "Jost", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+  background: var(--lighter);
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 14px;
+}
+.plan-badge.recommended {
+  background: var(--rose);
+  color: var(--white);
+}
+.plan-card.selected .plan-badge {
+  background: var(--rose);
+  color: var(--white);
+}
+
+.plan-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.plan-price {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.plan-tax {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  color: var(--mid);
+  margin-left: 6px;
+}
+.plan-features {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid var(--light);
+  padding-top: 14px;
+}
+.plan-features li {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  color: var(--mid);
+  line-height: 1.8;
+  padding-left: 14px;
+  position: relative;
+}
+.plan-features li::before {
+  content: "·";
+  position: absolute;
+  left: 4px;
+  color: var(--rose);
+}
+.plan-note {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+/* ─── Option sections ─── */
+.option-section {
+  margin-bottom: 32px;
+}
+.option-section-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.option-section-note {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  color: var(--mid);
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.option-toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.option-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border: 1px solid var(--light);
+  background: var(--white);
+  cursor: pointer;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 13px;
+  color: var(--ink);
+  letter-spacing: 1px;
+  transition: background .15s, border-color .15s;
+  text-align: left;
+  width: 100%;
+}
+.option-toggle:hover { background: var(--rose-lt); border-color: var(--rose); }
+.option-toggle.selected {
+  background: var(--rose-lt);
+  border-color: var(--rose);
+}
+.opt-check {
+  width: 16px; height: 16px;
+  border: 1px solid var(--light);
+  border-radius: 2px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+  transition: all .15s;
+  background: var(--white);
+  color: transparent;
+}
+.option-toggle.selected .opt-check {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--white);
+}
+.opt-label { flex: 1; }
+.opt-price {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--mid);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.opt-price small {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 10px;
+  color: var(--rose);
+}
+.option-toggle.selected .opt-price { color: var(--rose-dk); }
+
+.family-group { max-height: 340px; overflow-y: auto; padding-right: 2px; }
+.family-group::-webkit-scrollbar { width: 4px; }
+.family-group::-webkit-scrollbar-track { background: var(--lighter); }
+.family-group::-webkit-scrollbar-thumb { background: var(--light); border-radius: 2px; }
+
+/* ─── Price summary ─── */
+.price-summary {
+  border: 1px solid var(--light);
+  padding: 24px 28px;
+  text-align: right;
+  background: var(--lighter);
+  margin-top: 20px;
+}
+.price-summary-label {
+  font-family: "Jost", sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+.price-summary-total {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.price-summary-note {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 10px;
+  color: var(--mid);
+  margin-top: 6px;
+}
+
+.datetime-notice { margin-bottom: 32px; }
+
+/* ─── Calendar ─── */
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.calendar-nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--mid);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  padding: 4px 8px;
+  transition: color .2s;
+}
+.calendar-nav button:hover { color: var(--ink); }
+.calendar-month {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: var(--ink);
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 28px;
+}
+.cal-header {
+  text-align: center;
+  font-family: "Jost", sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: var(--mid);
+  padding: 6px 0 10px;
+}
+.cal-header:first-child { color: #B85C5C; }
+.cal-header:last-child  { color: #5C7CB8; }
+.cal-day {
+  text-align: center;
+  padding: 10px 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+}
+.cal-day:hover:not(.disabled):not(.empty) { background: var(--rose-lt); }
+.cal-day.selected { background: var(--rose); color: var(--white); }
+.cal-day.today { font-weight: 700; color: var(--rose); }
+.cal-day.today.selected { color: var(--white); }
+.cal-day.disabled { color: var(--light); cursor: not-allowed; }
+.cal-day.empty    { cursor: default; }
+.cal-day.sunday   { color: #B85C5C; }
+.cal-day.saturday { color: #5C7CB8; }
+.cal-day.selected.sunday,
+.cal-day.selected.saturday { color: var(--white); }
+
+/* ─── Divider ─── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--light);
+  margin: 32px 0;
+}
+
+/* ─── Time slots ─── */
+.sub-label {
+  font-family: "Jost", sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 16px;
+}
+.time-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.time-btn {
+  padding: 10px 22px;
+  border: 1px solid var(--light);
+  background: var(--white);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Cormorant Garamond", serif;
+  color: var(--ink);
+  letter-spacing: 1px;
+  transition: all .15s;
+}
+.time-btn:hover:not(.full) {
+  border-color: var(--rose);
+  background: var(--rose-lt);
+}
+.time-btn.selected {
+  background: var(--rose);
+  border-color: var(--rose);
+  color: var(--white);
+}
+.time-btn.full {
+  color: var(--light);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.time-legend {
+  font-size: 11px;
+  color: var(--mid);
+  margin-top: 8px;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+/* ─── Option sub-step ─── */
+.substep { display: none; }
+.substep.active { display: block; animation: fadeUp .4s ease; }
+
+.substep-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 14px;
+}
+.substep-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--light);
+  transition: background .3s;
+  flex-shrink: 0;
+}
+.substep-dot.active { background: var(--rose); }
+.substep-line-s {
+  width: 18px;
+  height: 1px;
+  background: var(--light);
+  flex-shrink: 0;
+}
+.substep-title {
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--ink);
+  margin-bottom: 6px;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+}
+.substep-desc {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 12px;
+  color: var(--mid);
+  margin-bottom: 28px;
+  line-height: 1.9;
+}
+
+/* ─── Subject cards (Step 2 per-person blocks) ─── */
+.subject-card {
+  border: 1px solid var(--light);
+  background: var(--lighter);
+  padding: 20px 24px 24px;
+  margin-bottom: 16px;
+}
+.subject-title {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--rose-dk);
+  margin-bottom: 18px;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+}
+#subjectList { margin-top: 4px; }
+
+/* ─── Quantity option ─── */
+.qty-option-wrap { display: flex; flex-direction: column; }
+.qty-row {
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: var(--lighter);
+  border: 1px solid var(--light);
+  border-top: none;
+}
+.qty-label {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--mid);
+  white-space: nowrap;
+}
+.qty-row .age-toggle-group { border: none; }
+.qty-row .age-toggle {
+  padding: 8px 18px;
+  font-size: 13px;
+  border: 1px solid var(--light);
+}
+
+/* ─── Age toggle ─── */
+.age-toggle-group {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--light);
+  width: fit-content;
+}
+.age-toggle {
+  padding: 12px 28px;
+  border: none;
+  border-right: 1px solid var(--light);
+  background: var(--white);
+  font-size: 14px;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  color: var(--ink);
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: background .15s, color .15s;
+}
+.age-toggle:last-child { border-right: none; }
+.age-toggle:hover { background: var(--rose-lt); }
+.age-toggle.selected {
+  background: var(--rose);
+  color: var(--white);
+}
+
+/* ─── Form fields ─── */
+.form-row { margin-bottom: 28px; }
+.form-label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.form-label .badge {
+  font-family: "Jost", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+.badge.req {
+  background: var(--rose);
+  color: var(--white);
+}
+.badge.opt {
+  background: none;
+  border: 1px solid var(--light);
+  color: var(--mid);
+}
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid var(--light);
+  background: transparent;
+  font-size: 15px;
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  color: var(--ink);
+  transition: border-color .2s;
+  outline: none;
+  border-radius: 0;
+}
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-bottom-color: var(--rose);
+}
+.form-row textarea {
+  resize: none;
+  min-height: 80px;
+  padding: 10px 0;
+}
+.form-hint {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  color: var(--mid);
+  margin-top: 6px;
+}
+.form-row.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 460px) { .form-row.two-col { grid-template-columns: 1fr; } }
+
+/* ─── Checkbox ─── */
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 16px; height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--rose);
+  cursor: pointer;
+}
+.checkbox-row a { color: var(--ink); }
+
+/* ─── Error ─── */
+.error-msg {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 11px;
+  color: var(--err);
+  margin-top: 6px;
+  display: none;
+}
+.error-msg.visible { display: block; }
+input.invalid, select.invalid, textarea.invalid {
+  border-bottom-color: var(--err) !important;
+}
+
+/* ─── Confirm table ─── */
+.confirm-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+.confirm-table tr { border-bottom: 1px solid var(--light); }
+.confirm-table th {
+  width: 36%;
+  font-family: "Jost", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 14px 0;
+  text-align: left;
+  vertical-align: top;
+}
+.confirm-table td {
+  font-size: 14px;
+  color: var(--ink);
+  padding: 14px 0 14px 16px;
+  vertical-align: top;
+  line-height: 1.7;
+}
+.confirm-table tr:last-child { border-bottom: none; }
+.confirm-table .total-row th,
+.confirm-table .total-row td {
+  padding-top: 20px;
+  font-family: "Cormorant Garamond", serif;
+}
+.confirm-table .total-row td {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--rose-dk);
+}
+
+.notice-box {
+  border-left: 2px solid var(--rose);
+  padding: 16px 18px;
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 12px;
+  color: var(--mid);
+  line-height: 2.1;
+  background: var(--rose-lt);
+  margin-bottom: 32px;
+}
+.notice-box strong { color: var(--ink); }
+
+/* ─── Buttons ─── */
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 32px;
+  border-top: 1px solid var(--light);
+  margin-top: 40px;
+}
+.btn-back {
+  padding: 14px 32px;
+  background: none;
+  border: 1px solid var(--light);
+  color: var(--mid);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-family: "Jost", serif;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-back:hover { border-color: var(--mid); color: var(--ink); }
+.btn-next {
+  padding: 14px 40px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: var(--white);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-family: "Jost", serif;
+  cursor: pointer;
+  transition: background .2s;
+  text-transform: uppercase;
+}
+.btn-next:hover { background: #3d3330; }
+.btn-submit {
+  padding: 14px 40px;
+  background: var(--rose);
+  border: 1px solid var(--rose);
+  color: var(--white);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-family: "Jost", serif;
+  cursor: pointer;
+  transition: background .2s;
+  text-transform: uppercase;
+}
+.btn-submit:hover { background: var(--rose-dk); border-color: var(--rose-dk); }
+
+/* ─── Complete ─── */
+.complete {
+  text-align: center;
+  padding: 60px 20px;
+}
+.complete-mark {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 40px;
+  color: var(--rose);
+  margin-bottom: 24px;
+  display: block;
+}
+.complete h2 {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  margin-bottom: 16px;
+}
+.complete p {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 2.2;
+}
+.complete-caution {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 13px;
+  color: var(--rose-dk);
+  background: var(--rose-lt);
+  border: 1px solid var(--rose);
+  padding: 10px 20px;
+  margin: 16px auto;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+.booking-num {
+  display: inline-block;
+  margin: 28px 0 20px;
+  padding: 14px 36px;
+  border: 1px solid var(--light);
+  font-family: "Jost", serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--rose);
+}
+.btn-home {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 14px 48px;
+  background: var(--ink);
+  color: var(--white);
+  text-decoration: none;
+  font-family: "Jost", sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  transition: background .2s;
+}
+.btn-home:hover { background: #3d3330; }
+
+/* ─── Footer ─── */
+footer {
+  text-align: center;
+  padding: 32px 16px;
+  font-family: "Jost", "Hiragino Kaku Gothic ProN", sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--mid);
+  border-top: 1px solid var(--light);
+  background: var(--white);
+  line-height: 1.8;
+}

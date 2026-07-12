@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卒園卒業プラン ご予約 | 花とつき</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <p class="header-eyebrow">reservation</p>
+  <h1>花とつき</h1>
+  <p class="header-sub">卒園卒業プラン ｜ Web Reservation</p>
+</header>
+
+<div class="wrapper">
+  <a href="index.html" class="back-to-top">← プラン選択に戻る</a>
+
+  <!-- Steps -->
+  <nav class="steps" id="stepNav" aria-label="ステップ">
+    <div class="step active" data-step="1">
+      <div class="step-dot"></div>
+      <span class="step-label">撮影情報</span>
+    </div>
+    <div class="step-line" id="line12"></div>
+    <div class="step" data-step="2">
+      <div class="step-dot"></div>
+      <span class="step-label">オプション</span>
+    </div>
+    <div class="step-line" id="line23"></div>
+    <div class="step" data-step="3">
+      <div class="step-dot"></div>
+      <span class="step-label">日時</span>
+    </div>
+    <div class="step-line" id="line34"></div>
+    <div class="step" data-step="4">
+      <div class="step-dot"></div>
+      <span class="step-label">予約者情報</span>
+    </div>
+    <div class="step-line" id="line45"></div>
+    <div class="step" data-step="5">
+      <div class="step-dot"></div>
+      <span class="step-label">確認</span>
+    </div>
+  </nav>
+
+  <!-- ── STEP 1 : 撮影情報 ── -->
+  <section class="card active" id="step1">
+    <div class="section-heading">
+      <span class="en">Step 01</span>
+      <h2>撮影情報のご入力</h2>
+      <p>お子様の情報をご入力ください</p>
+    </div>
+
+    <div id="subjectList"></div>
+
+    <div class="price-summary">
+      <div class="price-summary-label">お見積り合計</div>
+      <div class="price-summary-total">—</div>
+      <p class="price-summary-note">※確定金額は当日ご確認いただきます</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-next" onclick="goToStep(2)">Next →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 2 : オプション選択 ── -->
+  <section class="card" id="step2">
+    <div class="section-heading">
+      <span class="en">Step 02</span>
+      <h2>オプション選択</h2>
+      <div class="substep-indicator" id="step2SubIndicator">
+        <span class="substep-dot active"></span>
+        <span class="substep-line-s"></span>
+        <span class="substep-dot"></span>
+        <span class="substep-line-s"></span>
+        <span class="substep-dot"></span>
+      </div>
+    </div>
+
+    <!-- ── Sub-step 1 : ご家族のお支度 ── -->
+    <div class="substep active" id="step2-1">
+      <h3 class="substep-title">ご家族のお支度</h3>
+      <p class="substep-desc">ご家族のお支度が必要な方の人数を選択してください</p>
+
+      <div class="form-row">
+        <label class="form-label">お支度の必要な人数<span class="badge opt">任意</span></label>
+        <div class="age-toggle-group" id="dressingCountGroup">
+          <button type="button" class="age-toggle selected" data-count="0" onclick="toggleDressingCount(this)">なし</button>
+          <button type="button" class="age-toggle" data-count="1" onclick="toggleDressingCount(this)">1名</button>
+          <button type="button" class="age-toggle" data-count="2" onclick="toggleDressingCount(this)">2名</button>
+          <button type="button" class="age-toggle" data-count="3" onclick="toggleDressingCount(this)">3名</button>
+          <button type="button" class="age-toggle" data-count="4" onclick="toggleDressingCount(this)">4名</button>
+        </div>
+      </div>
+
+      <div id="dressingList"></div>
+
+      <div class="price-summary">
+        <div class="price-summary-label">お見積り合計</div>
+        <div class="price-summary-total">—</div>
+        <p class="price-summary-note">※確定金額は当日ご確認いただきます</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goToStep(1)">← Back</button>
+        <button class="btn-next" onclick="goToOptionSubStep(2)">Next →</button>
+      </div>
+    </div>
+
+    <!-- ── Sub-step 2 : ロケーション・その他 ── -->
+    <div class="substep" id="step2-2">
+      <h3 class="substep-title">ロケーション・その他</h3>
+
+      <div class="option-section">
+        <p class="option-section-title">ロケーション撮影オプション</p>
+        <p class="option-section-note">寒川神社での撮影データ 70cut を追加できます（ご主役おひとりにつき＋¥28,000）</p>
+        <p class="option-section-note">※二人目以降は、+14,000円追加となります</p>
+        <div class="option-toggle-group">
+          <button type="button" class="option-toggle" data-option="location" data-price="28000" onclick="toggleCheck(this)">
+            <span class="opt-check">✓</span>
+            <span class="opt-label">寒川の神社ロケーション撮影</span>
+            <span class="opt-price" id="location-price">＋¥28,000</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="option-section">
+        <p class="option-section-title">動画撮影オプション</p>
+        <div class="option-toggle-group">
+          <button type="button" class="option-toggle" data-option="video_studio" data-price="39800" onclick="toggleCheck(this)">
+            <span class="opt-check">✓</span>
+            <span class="opt-label">スタジオ動画撮影プラン（1分30秒ほど）</span>
+            <span class="opt-price">＋¥39,800</span>
+          </button>
+          <button type="button" class="option-toggle" data-option="video_location" data-price="39800" onclick="toggleCheck(this)">
+            <span class="opt-check">✓</span>
+            <span class="opt-label">ロケーション動画撮影プラン（1分30秒ほど）</span>
+            <span class="opt-price">＋¥39,800</span>
+          </button>
+          <button type="button" class="option-toggle" data-option="video_studio_location" data-price="55000" onclick="toggleCheck(this)">
+            <span class="opt-check">✓</span>
+            <span class="opt-label">スタジオ＆ロケーション動画撮影プラン（2分ほど）</span>
+            <span class="opt-price">＋¥55,000</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="option-section">
+        <div class="option-toggle-group">
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="nihongami" data-unit-price="3700" onclick="toggleQtyOption(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">日本髪オプション</span>
+              <span class="opt-price" id="nihongami-price">¥3,700</span>
+            </button>
+            <div class="qty-row" id="nihongami-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setOptionQty('nihongami',3700,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('nihongami',3700,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('nihongami',3700,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('nihongami',3700,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('nihongami',3700,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="cleaning" data-unit-price="770" onclick="toggleQtyOption(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">着物クリーニング保険（1着あたり）</span>
+              <span class="opt-price" id="cleaning-price">¥770</span>
+            </button>
+            <div class="qty-row" id="cleaning-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setOptionQty('cleaning',770,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('cleaning',770,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('cleaning',770,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('cleaning',770,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setOptionQty('cleaning',770,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-summary">
+        <div class="price-summary-label">お見積り合計</div>
+        <div class="price-summary-total">—</div>
+        <p class="price-summary-note">※確定金額は当日ご確認いただきます</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goToOptionSubStep(1)">← Back</button>
+        <button class="btn-next" onclick="goToOptionSubStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- ── Sub-step 3 : アルバム・きょうだい・料金合計 ── -->
+    <div class="substep" id="step2-3">
+      <h3 class="substep-title">アルバム・その他オプション</h3>
+
+      <div class="option-section">
+        <p class="option-section-title">アルバムオプション（全データ付き）</p>
+        <p class="option-section-note">撮影時間内の全データお渡しと高品質なアルバムのセットです</p>
+        <div class="option-toggle-group">
+          <button type="button" class="option-toggle" data-option="album_none" data-unit-price="0" onclick="toggleAlbum(this)">
+            <span class="opt-check">✓</span>
+            <span class="opt-label">アルバムなし</span>
+            <span class="opt-price">—</span>
+          </button>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="album_a3" data-unit-price="36300" onclick="toggleAlbum(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">A３スクエアアルバム＆全データプランセット</span>
+              <span class="opt-price" id="album_a3-price">＋¥36,300</span>
+            </button>
+            <div class="qty-row" id="album_a3-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a3',36300,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a3',36300,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a3',36300,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a3',36300,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a3',36300,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="album_a4" data-unit-price="25000" onclick="toggleAlbum(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">A４アルバム＆全データプランセット</span>
+              <span class="opt-price" id="album_a4-price">＋¥25,000</span>
+            </button>
+            <div class="qty-row" id="album_a4-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a4',25000,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a4',25000,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a4',25000,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a4',25000,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a4',25000,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="album_3men" data-unit-price="27800" onclick="toggleAlbum(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">３面スクエアアルバム＆全データプランセット</span>
+              <span class="opt-price" id="album_3men-price">＋¥27,800</span>
+            </button>
+            <div class="qty-row" id="album_3men-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3men',27800,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3men',27800,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3men',27800,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3men',27800,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3men',27800,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="album_3dai" data-unit-price="16800" onclick="toggleAlbum(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">３面台紙</span>
+              <span class="opt-price" id="album_3dai-price">＋¥16,800</span>
+            </button>
+            <div class="qty-row" id="album_3dai-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3dai',16800,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3dai',16800,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3dai',16800,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3dai',16800,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_3dai',16800,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="album_2dai" data-unit-price="14500" onclick="toggleAlbum(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">２面台紙</span>
+              <span class="opt-price" id="album_2dai-price">＋¥14,500</span>
+            </button>
+            <div class="qty-row" id="album_2dai-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_2dai',14500,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_2dai',14500,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_2dai',14500,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_2dai',14500,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_2dai',14500,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="qty-option-wrap">
+            <button type="button" class="option-toggle" data-option="album_a5" data-unit-price="15800" onclick="toggleAlbum(this)">
+              <span class="opt-check">✓</span>
+              <span class="opt-label">Ａ５ブック</span>
+              <span class="opt-price" id="album_a5-price">＋¥15,800</span>
+            </button>
+            <div class="qty-row" id="album_a5-qty" style="display:none">
+              <span class="qty-label">個数</span>
+              <div class="age-toggle-group">
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a5',15800,1,this)">1</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a5',15800,2,this)">2</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a5',15800,3,this)">3</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a5',15800,4,this)">4</button>
+                <button type="button" class="age-toggle" onclick="setAlbumQty('album_a5',15800,5,this)">5</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-summary">
+        <div class="price-summary-label">お見積り合計</div>
+        <div class="price-summary-total">—</div>
+        <p class="price-summary-note">※確定金額は当日ご確認いただきます</p>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goToOptionSubStep(2)">← Back</button>
+        <button class="btn-next" onclick="goToStep(3)">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STEP 3 : 日時選択 ── -->
+  <section class="card" id="step3">
+    <div class="section-heading">
+      <span class="en">Step 03</span>
+      <h2>日時のご選択</h2>
+      <p>ご希望の撮影日と開始時間をお選びください</p>
+    </div>
+
+    <div class="notice-box datetime-notice">
+      <strong>ご予約希望日時をお選びください</strong><br>
+      ※こちらはご来店時間です。撮影開始時間ではございません。<br>
+      ※所要時間の目安は約120分です。<br>
+      ※ロケーション撮影を追加される場合は、上記に加えて約60分のお時間をいただきます。なお、移動時間は含まれておりません。<br><br>
+      ご入力いただく日時は「ご予約希望日時」となり、この時点ではご予約は確定しておりません。<br>
+      内容を確認のうえ、当店にて予約状況を調整し、改めてご予約確定のご案内をメールにてお送りいたします。<br>
+      あらかじめご了承くださいますよう、お願いいたします。
+    </div>
+
+    <div class="calendar-nav">
+      <button onclick="changeMonth(-1)">← Prev</button>
+      <span class="calendar-month" id="calMonthLabel"></span>
+      <button onclick="changeMonth(1)">Next →</button>
+    </div>
+    <div class="calendar-grid" id="calGrid"></div>
+    <p class="error-msg" id="dateError">撮影日をお選びください</p>
+
+    <div id="timeSection" style="display:none;">
+      <hr class="divider">
+      <p class="sub-label">Time Slot</p>
+      <div class="time-grid" id="timeGrid"></div>
+      <p class="time-legend">× 満員　○ 空きあり</p>
+      <p class="error-msg" id="timeError">開始時間をお選びください</p>
+    </div>
+
+    <div class="price-summary">
+      <div class="price-summary-label">お見積り合計</div>
+      <div class="price-summary-total">—</div>
+      <p class="price-summary-note">※確定金額は当日ご確認いただきます</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goToStep(2)">← Back</button>
+      <button class="btn-next" onclick="goToStep(4)">Next →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 4 : 予約者情報入力 ── -->
+  <section class="card" id="step4">
+    <div class="section-heading">
+      <span class="en">Step 04</span>
+      <h2>予約者情報のご入力</h2>
+      <p>ご予約に必要な情報をご記入ください</p>
+    </div>
+
+    <div class="form-row two-col">
+      <div>
+        <label class="form-label">姓<span class="badge req">必須</span></label>
+        <input type="text" id="lastName" placeholder="山田" autocomplete="family-name">
+        <p class="error-msg" id="lastNameError">姓をご入力ください</p>
+      </div>
+      <div>
+        <label class="form-label">名<span class="badge req">必須</span></label>
+        <input type="text" id="firstName" placeholder="花子" autocomplete="given-name">
+        <p class="error-msg" id="firstNameError">名をご入力ください</p>
+      </div>
+    </div>
+
+    <div class="form-row two-col">
+      <div>
+        <label class="form-label">フリガナ（姓）<span class="badge req">必須</span></label>
+        <input type="text" id="lastNameKana" placeholder="ヤマダ">
+        <p class="error-msg" id="lastNameKanaError">フリガナをご入力ください</p>
+      </div>
+      <div>
+        <label class="form-label">フリガナ（名）<span class="badge req">必須</span></label>
+        <input type="text" id="firstNameKana" placeholder="ハナコ">
+        <p class="error-msg" id="firstNameKanaError">フリガナをご入力ください</p>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">お電話番号<span class="badge req">必須</span></label>
+      <input type="tel" id="phone" placeholder="090-0000-0000" autocomplete="tel">
+      <p class="form-hint">当日のご連絡に使用します。ハイフンありでご入力ください。</p>
+      <p class="error-msg" id="phoneError">正しい電話番号をご入力ください</p>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">郵便番号<span class="badge req">必須</span></label>
+      <input type="text" id="zipcode" placeholder="例：253-0105" autocomplete="postal-code" style="max-width:180px;" oninput="lookupZipcode(this)">
+      <p class="form-hint" id="zipcodeHint">ハイフンあり・なしどちらでも入力できます</p>
+      <p class="error-msg" id="zipcodeError">正しい郵便番号をご入力ください</p>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">ご住所<span class="badge req">必須</span></label>
+      <input type="text" id="address" placeholder="例：神奈川県寒川町岡田5-15-29" autocomplete="street-address">
+      <p class="error-msg" id="addressError">ご住所をご入力ください</p>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">メールアドレス<span class="badge req">必須</span></label>
+      <input type="email" id="email" placeholder="example@email.com" autocomplete="email">
+      <p class="form-hint">予約確認メールをお送りします。</p>
+      <p class="error-msg" id="emailError">正しいメールアドレスをご入力ください</p>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">ご要望・ご質問<span class="badge opt">任意</span></label>
+      <textarea id="notes" placeholder="衣装のご希望、アレルギー、その他ご自由にご記入ください。"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="checkbox-row">
+        <input type="checkbox" id="agreeCheck">
+        <span><a href="#">個人情報の取り扱い</a>について同意します <span class="badge req" style="vertical-align:middle;">必須</span></span>
+      </div>
+      <p class="error-msg" id="agreeError">同意のチェックが必要です</p>
+    </div>
+
+    <div class="price-summary">
+      <div class="price-summary-label">お見積り合計</div>
+      <div class="price-summary-total">—</div>
+      <p class="price-summary-note">※確定金額は当日ご確認いただきます</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goToStep(3)">← Back</button>
+      <button class="btn-next" onclick="goToStep(5)">Confirm →</button>
+    </div>
+  </section>
+
+  <!-- ── STEP 5 : ご予約お問い合わせ内容のご確認 ── -->
+  <section class="card" id="step5">
+    <div class="section-heading">
+      <span class="en">Step 05</span>
+      <h2>ご予約お問い合わせ内容のご確認</h2>
+      <p>内容をご確認のうえ「予約を確定する」をタップしてください</p>
+    </div>
+
+    <table class="confirm-table" id="confirmTable"></table>
+
+    <div class="notice-box">
+      <strong>【ご注意事項】</strong><br>
+      ・この時点では、ご予約は確定しておりません。お問い合わせの受付完了となります。<br>
+      ・内容を確認後、店舗より2営業日以内にメールにてご連絡いたします。<br>
+      ・店舗より「本予約完了メール」をお送りした時点で、ご予約の確定となります。<br>
+      ・3営業日を過ぎても店舗からのメールが届かない場合は、誠にお手数をおかけいたしますが、店舗までお問い合わせくださいますようお願いいたします。
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goToStep(4)">← Back</button>
+      <button class="btn-submit" onclick="submitReservation()">Reserve</button>
+    </div>
+  </section>
+
+  <!-- ── COMPLETE : 予約問い合わせ完了 ── -->
+  <section class="card" id="stepComplete">
+    <div class="complete">
+      <span class="complete-mark">✦</span>
+      <h2>ご予約・お問い合わせを承りました</h2>
+      <p>
+        この度は、ご予約・お問い合わせをいただき、誠にありがとうございます。<br>
+        ご入力いただいた内容を受付いたしました。
+      </p>
+      <p class="complete-caution">⚠️ 現時点では、まだご予約は確定しておりません。</p>
+      <p>
+        ご入力いただいたアドレス宛に、内容の控えメールを自動送信いたしました。<br>
+        その後、内容を確認のうえ、店舗より2営業日以内にメールにてご連絡いたします。<br>
+        店舗より「本予約完了メール」をお送りした時点で、ご予約の確定となります。<br>
+        恐れ入りますが、今しばらくお待ちくださいますようお願いいたします。
+      </p>
+      <div class="booking-num" id="bookingId"></div>
+      <p>
+        ご不明な点がございましたら、メールまたはお電話にてお気軽にお問い合わせください。<br>
+        📞 <span style="letter-spacing:2px;">050-8888-7857</span><br>
+        ✉️ hanatotuki.studio@gmail.com
+      </p>
+      <a href="https://www.hanatotuki.com/" class="btn-home">Back to Top</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>花とつき　〒253-0105 寒川町岡田5-15-29　<span style="letter-spacing:1px;">050-8888-7857</span></p>
+  <p style="margin-top:8px;">© Hanatotuki　|　Privacy Policy</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script-sotsuen.js"></script>
+</body>
+</html>
